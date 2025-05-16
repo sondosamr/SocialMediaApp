@@ -1,0 +1,17 @@
+<div class="post">
+    <textarea  placeholder="What's on your mind?" [(ngModel)]="text"></textarea>
+    <div class="buttons">
+        <button *ngIf="!imageUrl; else img" (click)="uploadPhoto()"> <i class="fa-regular fa-images"></i>Uplode photo</button>
+        <input 
+      type="file" 
+      id="fileInput" 
+      accept="image/*" 
+      style="display: none;" 
+      (change)="onPhotoSelected($event)"
+        />
+        <ng-template #img>
+            <img (click)="removePhoto()" [src]="imageUrl" alt="photo" style="max-width: 200px;" title="Click to remove"/>
+        </ng-template>
+        <button (click)="post()">Post</button>
+    </div>
+</div>
