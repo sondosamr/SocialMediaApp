@@ -1,0 +1,30 @@
+<div class="post-header">
+    <img [src]="'http://localhost:8080/images/'+post.user_photo" alt="User Image" />
+    <span>{{ post.user_name }}</span>
+  </div>
+  <div class="post-content">
+    <p *ngIf="post.text_post">{{post.text_post}}</p>
+    <img *ngIf="post.img_url" [src]="'http://localhost:8080/images/'+post.img_url" alt="Post Content" />
+  </div>
+  <div class="post-footer">
+    <!-- Like & Communt sec -->
+    <button (click)="hitLike()"><i [ngStyle]="{color: like? 'red':'grey'}"
+                                        [ngClass]=" like? 'fa-solid':'fa-regular'"  class=" fa-heart"></i> {{ post.likes }}</button>
+    <button (click)="hitComment()"><i class="fa-regular fa-message"></i> {{ post.comments }}</button>
+  </div>
+
+  <div class="comment-sec" *ngIf="comment" >
+    <div  *ngFor="let c of comments">
+      <hr style="width: 90%;" />
+      <div class="comment-head">
+        <img [src]="'http://localhost:8080/images/'+c.user_photo" alt="User Image" />
+        <h5>{{c.user_name}}</h5>
+      </div>
+      <p>{{c.text_comment}}</p>
+    </div>
+    <hr style="width: 90%;" />
+    <div class="comment-box">
+      <input  type="text" placeholder="Write a comment" [(ngModel)]="commentINP"  />
+      <button (click)="addComment()"><i class="fa-regular fa-paper-plane"></i></button>
+  </div>
+ 
