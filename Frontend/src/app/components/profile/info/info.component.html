@@ -1,0 +1,22 @@
+<div class="popup-container">
+    <div class="popup-content">
+      <button class="close-button" (click)="close()">×</button>
+      <h2>User Details</h2>
+      <div class="user-info">
+        <div class="info-item">
+          <p><strong>Name:</strong> {{ userData.user_name }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Email:</strong> {{ userData.email }}</p>
+        </div>
+        <div class="info-item">
+          <p><strong>Phone:</strong> {{ userData.phone }}</p>
+        </div>
+        <div class="info-item about-section">
+          <p><strong>About Me:</strong></p>
+          <p class="about-text">{{ userData.about }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
