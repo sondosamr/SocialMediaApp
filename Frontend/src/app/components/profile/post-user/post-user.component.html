@@ -1,0 +1,55 @@
+<div class="post">
+  <div class="post-header">
+    <div class="user-info">
+      <img [src]="'http://localhost:8080/images/'+post.user_photo" alt="User Image" class="profile-img" />
+      <span>{{ post.user_name }}</span>
+    </div>
+
+    <!-- dropdown button -->
+    <!-- <div class="dropdown">
+      <button class="options-button" (click)="toggleDropdown(post)">...</button>
+
+      <div *ngIf="post.isDropdownOpen" class="dropdown-content">
+        <button (click)="editPost(post)">Edit Post</button>
+        <button (click)="deletePost(post)">Delete Post</button>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- content-->
+  <div class="post-content">
+    <p >{{ post.text_post }}</p>
+    
+    <!-- textarea while editing-->
+    <!-- <textarea *ngIf="post.isEditing" [(ngModel)]="post.content"></textarea>-->
+
+    <img *ngIf="post.img_url" [src]="'http://localhost:8080/images/'+post.img_url" alt="Post Image" />
+  </div> 
+
+  <!-- save button-->
+  <!-- <div *ngIf="post.isEditing">
+    <button (click)="savePost(post)">Save Edits</button>
+  </div> -->
+
+  <!-- likes-->
+  <div class="post-footer">
+    <button class="like-button" (click)="hitLike()"><i [ngStyle]="{color: like? 'red':'grey'}"
+      [ngClass]=" like? 'fa-solid':'fa-regular'"  class=" fa-heart"></i> {{ post.likes }}</button>
+    <button class="comment-button" (click)="hitComment()"><i class="fa-regular fa-message"></i> {{ post.comments }}</button>
+
+    <div class="comment-sec" *ngIf="comment" >
+      <div  *ngFor="let c of comments">
+        <hr style="width: 90%;" />
+        <div class="comment-head">
+          <img [src]="'http://localhost:8080/images/'+c.user_photo" alt="User Image" />
+          <h5>{{c.user_name}}</h5>
+        </div>
+        <p>{{c.text_comment}}</p>
+      </div>
+      <hr style="width: 90%;" />
+      <div class="comment-box">
+        <input  type="text" placeholder="Write a comment" [(ngModel)]="commentINP"  />
+        <button (click)="addComment()"><i class="fa-regular fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
