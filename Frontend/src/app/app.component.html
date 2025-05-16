@@ -1,0 +1,11 @@
+<div *ngIf="showHeader">
+  <nav>
+    <a routerLink= "/login" routerLinkActive="active">Login</a>
+    <a routerLink= "/signup" routerLinkActive="active">Signup</a>
+    <a routerLink="/feed" routerLinkActive="active">Feed</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
