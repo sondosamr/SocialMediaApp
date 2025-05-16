@@ -1,0 +1,53 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <!-- Background img -->
+    <div class="background-image">
+      <button *ngIf = "viewAs == false" class="edit-background-button" (click)="toggleBackgroundDropdown()">Edit Background Picture</button>
+
+      <div *ngIf = "isBackgroundDropdownOpen" class="dropdown-content">
+        <button (click)="editBackground()">Edit</button>
+        <button (click)="deleteBackground()">Delete</button>
+      </div>
+      <img [src] ="'http://localhost:8080/images/'+backgroundImageUrl" alt="Background">
+    </div>
+    
+    <!-- profile img -->
+    <div class="profile-picture">
+      <button *ngIf = "viewAs == false" class="edit-profile-picture-button" (click)="toggleDropdown()">Edit Profile Picture</button>
+
+      <!-- drop down for edit -->
+      <div *ngIf="isDropdownOpen" class="dropdown-menu">
+        <button (click)="editProfilePicture()">Edit</button>
+        <button (click)="deleteProfilePicture()">Delete</button>
+      </div>
+
+      <img [src]="'http://localhost:8080/images/'+profileImageUrl" alt="Profile Picture" />
+    </div>
+
+    <h2>{{ username }}</h2>
+    <button (click) = "toggleViewAs()"> View As </button> 
+    <button *ngIf = "viewAs == true" (click)="follow()">{{ followButtonText }}</button> 
+
+  </div>
+
+  <div class="profile-stats">
+    <span>{{ posts.length }} POSTS</span>
+    <span>{{ followersCount }} FOLLOWERS</span>
+    <span>{{ followingCount }} FOLLOWING</span>
+    <button (click)="togglePopup()">View Details</button>
+    <app-info *ngIf="showPopup" 
+    [userData]="userData" 
+    (closePopup)="togglePopup()"></app-info>
+  </div>
+  
+  <!-- create post -->
+  <app-create-post-user *ngIf = "viewAs == false" (dataEmitter)="receiveData($event)" [posts]="posts" ></app-create-post-user>
+
+  <!-- posts -->
+  <div class="profile-posts">
+    <app-post-user *ngFor="let post of posts" 
+      [post]="post" 
+      [user_id]="id"
+      (deletePostEmitter)="deletePost($event)">
+    </app-post-user>  </div>
+</div>
